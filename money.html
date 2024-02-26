@@ -159,8 +159,114 @@
                 <img src="building.jpg" alt="Building">
             </div>
         </div>
+        <script>
+            var score = 0;
+            var locations = 0;
+            var lastLocation = 0;
+            var fancyCoinLocations = [2, 5, 14, 19, 23, 33];
+            var monsterLocation = 20;
+            var gameOver = false;
+            var locationss = {};
+        
+            function check(position) {
+                if (gameOver) {
+                    return;
+                }
+                locationss = {
+                    0: document.getElementById("0"),
+                    1: document.getElementById("1"),
+                    2: document.getElementById("2"),
+                    3: document.getElementById("3"),
+                    4: document.getElementById("4"),
+                    5: document.getElementById("5"),
+                    6: document.getElementById("6"),
+                    7: document.getElementById("7"),
+                    8: document.getElementById("8"),
+                    9: document.getElementById("9"),
+                    10: document.getElementById("10"),
+                    11: document.getElementById("11"),
+                    12: document.getElementById("12"),
+                    13: document.getElementById("13"),
+                    14: document.getElementById("14"),
+                    15: document.getElementById("15"),
+                    16: document.getElementById("16"),
+                    17: document.getElementById("17"),
+                    18: document.getElementById("18"),
+                    19: document.getElementById("19"),
+                    20: document.getElementById("20"),
+                    21: document.getElementById("21"),
+                    22: document.getElementById("22"),
+                    23: document.getElementById("23"),
+                    24: document.getElementById("24"),
+                    25: document.getElementById("25"),
+                    26: document.getElementById("26"),
+                    27: document.getElementById("27"),
+                    28: document.getElementById("28"),
+                    29: document.getElementById("29"),
+                    30: document.getElementById("30"),
+                    31: document.getElementById("31"),
+                    32: document.getElementById("32"),
+                    33: document.getElementById("33"),
+                    34: document.getElementById("34")
+                };
+        
+                let image = locationss[position];
+        
+                if (position == monsterLocation) {
+                    image.src = 'monster.jpg';
+                    gameOver = true;
+                    score -= 5;
+                } else if (fancyCoinLocations.includes(position)) {
+                    image.src = 'fancier_coin.jpg';
+                    score += 3;
+                } else {
+                    image.src = 'coin.jpg';
+                    score += 1;
+                }
+                text_number = document.getElementById("locations")
+                text_number.innerHTML ="number of locations: "+ position;
+                text_score = document.getElementById("score");
+                text_score.innerHTML="Score: "+ score;
+                locations = position;
+                help(position)
+            }
+            
+            function help(locations) {
+                lastLocation = locations;
+                var row = Math.floor(lastLocation / 5);
+                var col = lastLocation % 5;
+                var monsteRow = Math.floor(monsterLocation / 5);
+                var mosterCol = monsterLocation % 5;
+                var help_text = document.getElementById("help");
+                let isClose = false;
+                let isGrrr = false;
 
+                for (var i = 0; i < fancyCoinLocations.length; i++) {
+                    if (
+                        lastLocation - 1 == fancyCoinLocations[i] ||
+                        lastLocation + 1 == fancyCoinLocations[i] ||
+                        lastLocation - 5 == fancyCoinLocations[i] ||
+                        lastLocation + 5 == fancyCoinLocations[i]
+                    ) {
+                        isClose = true;
+                    }
+                }
 
+                if (Math.abs(row - monsteRow) <= 1 && Math.abs(col - mosterCol) <= 1) {
+                    isGrrr = true;
+                }
+                var help_text = document.getElementById("help");
+
+                if (isGrrr) {
+                    help_text.innerHTML = "Grrr";
+                } else if (isClose) {
+                    help_text.innerHTML = "So close";
+                } else {
+                    help_text.innerHTML = "All clear";
+                }  
+                }
+
+</script>
 </body>
 
 </html>
