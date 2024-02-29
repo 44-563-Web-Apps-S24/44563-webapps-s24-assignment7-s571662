@@ -202,6 +202,22 @@
             }
             document.getElementById("help").innerHTML = returnValue;
         }
+        //Bonus
+        function newgame(){
+                gameOver=false;
+                score = 0; 
+                locations = 0;
+                let imgrest = document.getElementsByTagName("img");
+                for (i=0; i < imgrest.length; i++){
+                    imgrest[i].src ="building.jpg";
+                }
+                monsterLocation = Math.floor(Math.random()*35);
+                for (i=0; i < fancyCoinLocations.length; i++){
+                    fancyCoinLocations[i]=Math.floor(Math.random()*35);
+                }
+                document.getElementById("score").innerText = "Score is " + score + ".";
+                document.getElementById("locations").innerText = "Number of locations checked is " + locations + ".";
+            }
     </script>
 
 </body>
