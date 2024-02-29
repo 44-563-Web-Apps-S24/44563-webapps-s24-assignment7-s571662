@@ -25,6 +25,8 @@
 
         document.getElementById('stopBtn').onclick = recordTime;
         function startTime() {
+            //BONUS
+            random = Math.floor(Math.random() * 9)+2;
             for (let i = 0; i < 5; i++) {
                 setTimeout(function() {
                     document.getElementById('counter').innerHTML = i;
